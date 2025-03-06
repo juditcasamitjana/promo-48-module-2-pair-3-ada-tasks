@@ -1,0 +1,41 @@
+header {
+    background-color: lightseagreen;
+    color: white;
+    height: 50px;
+    font-family: "Inter";
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+}
+
+main {
+    display: flex;
+    padding: 50px;
+    gap: 50px;    
+}
+
+.form__add {
+    background-color: lightcoral;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+}
+
+.form__list {
+    background-color: lightblue;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    border: 1px solid rgb(155, 155, 155);
+    border-radius: 3px;
+}
+
+.btn {
+    background-color: lightseagreen;
+    width: 30%;
+}
+

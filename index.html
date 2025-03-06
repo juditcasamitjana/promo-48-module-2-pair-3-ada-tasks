@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Adatask</title>
+        <link rel="stylesheet" href="./styles/reset.css" />
+        <link rel="stylesheet" href="./styles/styles.css" />
+    </head>
+    <body>
+        <header>Adatask</header>
+        <main>
+            <div class="form__add">
+                <form action="">
+                    <input
+                        class="js-input__add"
+                        id="add"
+                        type="text"
+                        name="add"
+                        placeholder="Nueva tarea"
+                    />
+
+                    <button type="submit" class="btn js-btn__add">
+                        Agregar
+                    </button>
+                </form>
+            </div>
+            <div class="form__list">
+                <form action="">
+                    <div class="search">
+                        <input
+                            id="search"
+                            class="search"
+                            type="text"
+                            placeholder="Ejemplo: Gym"
+                        />
+                        <button type="submit" class="btn js-btn__search">
+                            Buscar
+                        </button>
+                    </div>
+                    <div class="list__tasks">
+                        <ul>
+                            <li><input type="text" /></li>
+                        </ul>
+                    </div>
+                </form>
+            </div>
+        </main>
+        <script src="js/main.js"></script>
+    </body>
+</html>
