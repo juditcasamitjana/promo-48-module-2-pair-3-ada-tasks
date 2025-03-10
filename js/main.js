@@ -1,6 +1,6 @@
 "use strict";
 
-const tasks = [
+/*const tasks = [
     { name: "Recoger setas en el campo", completed: true, id: 1 },
     { name: "Comprar pilas", completed: true, id: 2 },
     { name: "Poner una lavadora de blancos", completed: true, id: 3 },
@@ -9,7 +9,7 @@ const tasks = [
         completed: false,
         id: 4,
     },
-];
+];*/
 
 const inputAdd = document.querySelector(".js-input__add"); // input
 const btnAdd = document.querySelector(".js-btn__add"); // button
@@ -26,13 +26,13 @@ const createTask = (task) => {
             </li>`;
 };
 
-const renderTasks = (tasks) => {
+/*const renderTasks = (tasks) => {
     //pinta las tareas que nos han dado
     taskList.innerHTML = "";
     for (const task of tasks) {
         taskList.innerHTML += createTask(task);
     }
-};
+};*/
 
 const handleClick = (e) => {
     //añade tarea nueva al array y la pinta
@@ -69,4 +69,31 @@ btnAdd.addEventListener("click", handleClick); //escucha los clicks sobre btnAdd
 taskList.addEventListener("click", handleClickList); //escucha los clicks de los checkbox
 btnSearch.addEventListener("click", handleClickSearch);
 
-renderTasks(tasks); // Pinta las tareas dadas en el array en el html
+//renderTasks(tasks); // Pinta las tareas dadas en el array en el html
+
+const GITHUB_USER = "Loreto94";
+const SERVER_URL = `https://dev.adalab.es/api/todo/${GITHUB_USER}`;
+let task = [];
+/*fetch("https://dev.adalab.es/api/todo");
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+
+    })*/
+
+fetch(SERVER_URL)
+    .then(response => response.json())
+    .then(data => {
+        const tasks = data.results;
+        console.log(tasks); 
+    })
+
+const renderTasks = (tasks) => {
+        //pinta las tareas que nos han dado
+        taskList.innerHTML = "";
+        for (const task of tasks) {
+            taskList.innerHTML += createTask(task);
+        }
+    };
+
+renderTasks();
