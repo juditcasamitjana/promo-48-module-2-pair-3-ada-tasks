@@ -11,21 +11,23 @@ const tasks = [
     },
 ];
 
-const inputAdd = document.querySelector(".js-input__add");
-const btnAdd = document.querySelector(".js-btn__add");
-const taskList = document.querySelector(".js-task-list");
-
-//Cosas
+const inputAdd = document.querySelector(".js-input__add"); // input
+const btnAdd = document.querySelector(".js-btn__add"); // button
+const taskList = document.querySelector(".js-task__list"); // ul
+const btnSearch = document.querySelector(".js-btn__search"); // button
+const inputSearch = document.querySelector(".js-input__search"); // input
 
 const createTask = (task) => {
-    return `<li id="${task.id}" class="${task.completed ? "completed" : ""}">
-                <input type="checkbox" ${task.completed ? "checked" : ""}> ${
-        task.name
-    }
+    //interpolación
+    return `<li class="${task.completed ? "completed" : ""}">
+                <input type="checkbox" id="${task.id}" ${
+        task.completed ? "checked" : ""
+    }> ${task.name}
             </li>`;
 };
 
-const renderTasks = () => {
+const renderTasks = (tasks) => {
+    //pinta las tareas que nos han dado
     taskList.innerHTML = "";
     for (const task of tasks) {
         taskList.innerHTML += createTask(task);
@@ -33,7 +35,9 @@ const renderTasks = () => {
 };
 
 const handleClick = (e) => {
+    //añade tarea nueva al array y la pinta
     e.preventDefault();
+
     const taskName = inputAdd.value;
     const newTask = {
         name: taskName,
@@ -42,9 +46,27 @@ const handleClick = (e) => {
     };
 
     tasks.push(newTask);
-    renderTasks();
+    renderTasks(tasks); //Pinta las nuevas tareas
 };
 
-btnAdd.addEventListener("click", handleClick);
+const handleClickList = (e) => {
+    const taskId = parseInt(e.target.id);
+    // console.log(taskId);
+    if (!taskId) return;
+    const task = tasks.find((task) => task.id === taskId); // Busca la tarea que tenga el id `taskId` en el array `tasks`
+    task.completed = !task.completed; // Una vez que has obtenido la tarea, actualiza la propiedad `completed`
+    renderTasks(tasks); // Pinta de nuevo las tareas en el html
+};
 
-renderTasks();
+const handleClickSearch = (e) => {
+    e.preventDefault();
+    const newSearch = inputSearch.value; // Obtén el valor del input de filtrar
+    const filteredTasks = tasks.filter((task) => task.name.includes(newSearch)); // Filtra las tareas que coinciden con el valor introducido por el usuario
+    renderTasks(filteredTasks); //Vuelve a pintar las tareas, esta vez utilizando el listado filtrado
+};
+
+btnAdd.addEventListener("click", handleClick); //escucha los clicks sobre btnAdd
+taskList.addEventListener("click", handleClickList); //escucha los clicks de los checkbox
+btnSearch.addEventListener("click", handleClickSearch);
+
+renderTasks(tasks); // Pinta las tareas dadas en el array en el html
