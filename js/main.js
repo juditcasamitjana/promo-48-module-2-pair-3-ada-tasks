@@ -18,30 +18,32 @@ const taskList = document.querySelector(".js-task-list");
 //Cosas
 
 const createTask = (task) => {
-    return `<li id="${task.id}" class="${task.completed?'completed':''}">
-                <input type="checkbox" ${task.completed?'checked':''}> ${task.name}
+    return `<li id="${task.id}" class="${task.completed ? "completed" : ""}">
+                <input type="checkbox" ${task.completed ? "checked" : ""}> ${
+        task.name
+    }
             </li>`;
-}
+};
 
 const renderTasks = () => {
-    taskList.innerHTML='';
+    taskList.innerHTML = "";
     for (const task of tasks) {
         taskList.innerHTML += createTask(task);
     }
-}
+};
 
 const handleClick = (e) => {
     e.preventDefault();
     const taskName = inputAdd.value;
-    const newTask = { 
-        name: taskName, 
-        completed: false, 
-        id: tasks.length + 1
-    } 
+    const newTask = {
+        name: taskName,
+        completed: false,
+        id: tasks.length + 1,
+    };
 
     tasks.push(newTask);
-    renderTasks()
-}
+    renderTasks();
+};
 
 btnAdd.addEventListener("click", handleClick);
 
