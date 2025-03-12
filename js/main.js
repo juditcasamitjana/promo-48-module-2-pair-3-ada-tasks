@@ -17,14 +17,14 @@ const taskList = document.querySelector(".js-task__list"); // ul
 const btnSearch = document.querySelector(".js-btn__search"); // button
 const inputSearch = document.querySelector(".js-input__search"); // input
 
-const createTask = (task) => {
+/*const createTask = (task) => {
     //interpolación
     return `<li class="${task.completed ? "completed" : ""}">
                 <input type="checkbox" id="${task.id}" ${
         task.completed ? "checked" : ""
     }> ${task.name}
             </li>`;
-};
+};*/
 
 /*const renderTasks = (tasks) => {
     //pinta las tareas que nos han dado
@@ -89,15 +89,25 @@ let tasks = [];
 //         console.log(tasks);
 //     });
 
+for (const task of tasks) {
+    const List = document.createElement("li");
+    taskList.appendChild(List);
+    List.setAttribute("class", "completed");
+    List.setAttribute("id", "taskid");
+    List.setAttribute("type", "checkbox");
+
+}
+
+
 const renderTasks = (tasks) => {
     //pinta las tareas que nos han dado
     taskList.innerHTML = "";
     for (const task of tasks) {
-        taskList.innerHTML += createTask(task);
+    //taskList.innerHTML += createTask(task);
     }
 };
 
-// renderTasks();
+ renderTasks();
 
 const tasksLocalStorage = JSON.parse(localStorage.getItem("tasks"));
 
