@@ -111,7 +111,7 @@ if (tasksLocalStorage !== null) {
     fetch(SERVER_URL)
         .then((response) => response.json())
         .then((data) => {
-            tasks = data.results.name;
+            tasks = data.results;
             //guarda el listado obtenido en el Local Storage
             const kjhgjh = localStorage.setItem("tasks", JSON.stringify(tasks));
             // pinta la lista de tareas
